@@ -1,0 +1,240 @@
+body {
+  text-align: center;
+  background-color: #F2F2F2;
+  padding-top: 80px;
+  font-family: sans-serif;
+  margin-top: 40px;
+  font-size:30px;
+  color: #333;
+}
+
+
+
+.botones {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+}
+
+.botones form {
+  width: 12em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.botones input {
+  font-size: 30px;
+  padding: 5px;
+  margin-top: 1em;
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight:500;
+  border: 2px solid #333;
+  border-radius: 10px;
+  transition: 100ms;
+}
+
+.botones input:hover {
+  transition: 100ms;
+  box-shadow: 0 0 5px #333;
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+.volver input {
+  background-color: #333;
+  color: #F2F2F2;
+  padding: 8px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+/*Tabla*/
+.tablaDiv {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+}
+
+.tablaDiv table {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+}
+
+th {
+  background-color: #333;
+  color: #F2F2F2;
+}
+
+tr:nth-child(odd) {
+  background-color: #F2F2F2;
+}
+
+tr:nth-child(even) {
+  background-color: #bababa;
+}
+
+tbody input, select[name="cargo"],[name="categoria_libreta"]{
+  width: 130px;
+  text-align: left;
+  background-color: #f2f2f2;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+tbody button {
+  background-color: #F2EB80;
+  border: 2px solid #333;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.1s;
+
+}
+
+tbody button:hover {
+  background-color: #D9BB29;
+  transition: 0.1s;
+}
+
+/*hr*/
+.raya {
+  width: 50%;
+  height: 5px;
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: #333;
+}
+
+/* Estilos del Header */
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo h1 {
+  margin-left: 10px;
+  font-size: 35px;
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 50px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+
+
+/* Menú Hamburguesa */
+
+.menu-toggle {
+  display: none;
+}
+
+.menu-btn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 40px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.menu-btn:hover {
+  border-radius: 10px;
+  background-color: #0455BF;
+  transition: 0.3s;
+}
+
+.menu-btn span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #F2F2F2;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+
+}
+
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 4px solid #0455BF;
+  background-color: #333333;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 200px;
+  height: 100%;
+  transition: right 0.3s ease;
+  box-shadow: 0 0 12px black;
+}
+
+.menu li {
+  padding: 10px;
+  border-bottom: 4px solid #0455BF;
+  box-shadow: 0 5px 5px -5px black;
+
+}
+
+.menu li a {
+  color: #F2F2F2;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+
+}
+
+#menu-toggle:checked~.menu {
+  right: 0;
+}
+
+/*Formulario*/
+.formulario input[type="text"],[type="email"],select[name="cargo"],[name="categoria_libreta"]{
+  text-align: left;
+  background-color: #f2f2f2;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+.formulario input[type="submit"],[type="button"]{
+  text-align: left;
+  font-size: 20px;
+  background-color: #333;
+  font-weight: bold;
+  color: #F2F2F2;
+
+}
