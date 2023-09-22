@@ -1,0 +1,25 @@
+version: "2"
+services:
+  aplicacion:
+  container-name:aplicacion-php
+  build:
+  context:
+  docekrfile: Dockerfile-local
+  ports:
+  - "80:80"
+  environment:
+  DB_USUARIO: root
+  DB_PASSWORD: root
+  DB_IP: 192.17.32.4
+  DB_NOMBRE: quickcarry
+  volumes:
+  - ./:/var/www/html
+  db:
+container_name:base-de-datos
+image: mysql:5.7
+networks:192.192.33.4
+ports:
+  -3306:3306
+environment:
+MYSQL_ROOT_PASSWORD: root
+MYSQL_DATABASE: quickcarry
