@@ -1,0 +1,712 @@
+body {
+  text-align: center;
+  background-color: #F2F2F2;
+  padding-top: 80px;
+  font-family: sans-serif;
+  margin-top: 40px;
+  font-size: 30px;
+  color: #333;
+}
+
+
+
+.botones {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+}
+
+.botones form {
+  width: 12em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.botones input {
+  font-size: 30px;
+  padding: 5px;
+  margin-top: 1em;
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: 500;
+  border: 2px solid #333;
+  border-radius: 10px;
+  transition: 100ms;
+}
+
+.botones input:hover {
+  transition: 100ms;
+  box-shadow: 0 0 5px #333;
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+.volver input {
+  background-color: #333;
+  color: #F2F2F2;
+  padding: 8px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+/*DIV DE LAS DOS TABLAS*/
+.tablas {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.tablaDivPaq {
+  flex: left;
+
+}
+
+.tablaDivLot {
+  /*background-color: #04bf30;*/
+  flex: right;
+  width: 50%;
+}
+
+/*MODIFICAR LOTE*/
+
+.modiLote {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #333;
+  border: 2px solid #333;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 1000px;
+  width: 1200px;
+  box-shadow: 0 0 10px black;
+}
+
+.modiLote h2 {
+  color: #f2f2f2;
+
+}
+
+#gestionLote {
+  border: 5px solid #333;
+  width: 60%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+#paqueteLote {
+  border: 5px solid #333;
+  width: 80%;
+  max-width: 1200px;
+  display: flex;
+  margin-top: 10%;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+
+}
+
+#paquetesDisponibles {
+  margin-right: 10px;
+}
+
+#paquetesDentroLotes {
+  margin-left: 10px;
+}
+
+#lotesDisponibles {
+  margin-right: 10px;
+}
+
+#lotesRecorrido {
+  margin-left: 10px;
+}
+.modiLote label {
+  margin-top: 10px;
+  color: #f2f2f2;
+
+}
+
+.modiLote select[name="departamento_destino"],
+.modiLote input[type="number"],
+.modiLote select[name="estado"] {
+  font-size: 20px;
+  padding: 5px;
+  width: 80%;
+  text-align: center;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.modiLote input[type="text"] {
+  text-align: center;
+  font-size: 40px;
+  width: 80%;
+}
+
+.modiLote input[type="submit"] {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+/*TABLA LOTE*/
+.tablaDivLot {
+  text-align: center;
+  align-items: center;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  margin-top: 20px;
+  margin: 0 auto;
+  font-size: 20px;
+  border-collapse: collapse;
+}
+
+/*TABLA PAQUETE*/
+.tablaDivPaq {
+
+  text-align: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  margin-top: 50px;
+  margin: 0 auto;
+  font-size: 20px;
+  border-collapse: collapse;
+}
+
+/*Alta LOTE*/
+.altaLote {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-left: 120px;
+  display: flex;
+  flex-direction: column;
+  /* Cambio en la dirección del flex container */
+  justify-content: center;
+  /* Centrado vertical */
+  background-color: #333;
+  border: 2px solid #333;
+  border-radius: 10px;
+  height: 450px;
+  width: 480px;
+  box-shadow: 0 0 10px black;
+}
+
+.altaLote h2 {
+  color: #f2f2f2;
+  margin-bottom: 20px;
+  /* Espaciado inferior para el título */
+}
+
+.altaLote form {
+  width: 100%;
+  /* Ancho del formulario al 100% */
+  max-width: 450px;
+  /* Ancho máximo del formulario */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.altaLote label {
+  margin-top: 10px;
+  color: #f2f2f2;
+}
+
+.altaLote select[name="departamento"],
+.altaLote input[type="number"],
+.altaLote select[name="estado"] {
+  font-size: 20px;
+  padding: 5px;
+  width: 85%;
+  text-align: center;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.altaLote input[type="submit"] {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+
+/*Alta Recorrido*/
+.altaRecorrido {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  /* Cambio en la dirección del flex container */
+  justify-content: center;
+  /* Centrado vertical */
+  background-color: #333;
+  border: 2px solid #333;
+  border-radius: 10px;
+  height: 550px;
+  width: 480px;
+  box-shadow: 0 0 10px black;
+}
+
+.altaRecorrido h2 {
+  color: #f2f2f2;
+  margin-bottom: 20px;
+  /* Espaciado inferior para el título */
+}
+
+.altaRecorrido form {
+  width: 100%;
+  /* Ancho del formulario al 100% */
+  max-width: 450px;
+  /* Ancho máximo del formulario */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.altaRecorrido label {
+  margin-top: 10px;
+  color: #f2f2f2;
+}
+
+.altaRecorridoselect[name="departamento"],
+.altaRecorrido input[type="number"],
+.altaRecorrido select[name="estado"] {
+  font-size: 20px;
+  padding: 5px;
+  width: 85%;
+  text-align: center;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.altaRecorrido input[type="submit"] {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
+
+/*COLUMNAS DEPARTAMENTOS*/
+.columnasDepartamentos {
+
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.columnas {
+  flex: 1;
+  width: 50%;
+  font-size: 12px;
+  text-align: left;
+}
+
+/*Transporte*/
+.transporte {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-right: 120px;
+  display: flex;
+  flex-direction: column;
+  /* Cambio en la dirección del flex container */
+  justify-content: center;
+  /* Centrado vertical */
+  background-color: #333;
+  border: 2px solid #333;
+  border-radius: 10px;
+  height: 1000px;
+  width: 500px;
+  box-shadow: 0 0 10px black;
+}
+
+.transporte h2 {
+  color: #f2f2f2;
+  margin-bottom: 20px;
+  /* Espaciado inferior para el título */
+}
+
+.transporte form {
+  width: 100%;
+  /* Ancho del formulario al 100% */
+  max-width: 450px;
+  /* Ancho máximo del formulario */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transporte label {
+  margin-top: 10px;
+  color: #f2f2f2;
+}
+
+.transporte select[name="departamento"],
+.transporte input[type="number"],
+.transporte select[name="estado"] {
+  font-size: 20px;
+  padding: 5px;
+  width: 85%;
+  text-align: center;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.transporte input[type="submit"] {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+/*TABLA LOTE*/
+.tablaDivLot {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+}
+
+.tablaDivLot table {
+  text-align: center;
+  margin: 0 auto;
+  flex: left;
+  font-size: 20px;
+}
+
+.tablaDivLot table {
+  width: 70%;
+  flex: right;
+  border-collapse: collapse;
+}
+
+
+/* BOTON DISABLED DE LA TABLA  */
+.button-disabled {
+  opacity: 0.5; /* Cambia la opacidad para dar un aspecto deshabilitado */
+  pointer-events: none; /* Evita que el botón sea interactivo */
+}
+/*tabla*/
+.tablaDiv {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+}
+
+.tablaDiv table {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+}
+
+th {
+  background-color: #333;
+  color: #F2F2F2;
+}
+
+tr:nth-child(odd) {
+  background-color: #F2F2F2;
+}
+
+tr:nth-child(even) {
+  background-color: #bababa;
+}
+
+tbody input,
+select[name="cargo"],
+[name="categoria_libreta"] {
+  width: 130px;
+  text-align: left;
+  background-color: #f2f2f2;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+tbody button {
+  background-color: #F2EB80;
+  border: 2px solid #333;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.1s;
+
+}
+
+tbody button:hover {
+  background-color: #D9BB29;
+  transition: 0.1s;
+}
+
+/*hr*/
+.raya {
+  width: 50%;
+  height: 5px;
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: #333;
+}
+
+/* Estilos del Header */
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  margin-left: 10px;
+  font-size: 35px;
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 50px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+
+
+/* Menú Hamburguesa */
+
+.menu-toggle {
+  display: none;
+}
+
+.menu-btn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 40px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.menu-btn:hover {
+  border-radius: 10px;
+  background-color: #0455BF;
+  transition: 0.3s;
+}
+
+.menu-btn span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #F2F2F2;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+
+}
+
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 4px solid #0455BF;
+  background-color: #333333;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 200px;
+  height: 100%;
+  transition: right 0.3s ease;
+  box-shadow: 0 0 12px black;
+}
+
+.menu li {
+  padding: 10px;
+  border-bottom: 4px solid #0455BF;
+  box-shadow: 0 5px 5px -5px black;
+
+}
+
+.menu li a {
+  color: #F2F2F2;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+
+}
+
+#menu-toggle:checked~.menu {
+  right: 0;
+}
+
+/*Formulario*/
+.formulario input[type="text"],
+[type="email"],
+select[name="cargo"],
+[name="categoria_libreta"] {
+  text-align: left;
+  background-color: #f2f2f2;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+.formulario input[type="submit"],
+[type="button"] {
+  text-align: left;
+  font-size: 20px;
+  background-color: #333;
+  font-weight: bold;
+  color: #F2F2F2;
+
+}
+
+.formulario {
+  text-align: center;
+  width: 800px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+
+}
+
+.formulario input:focus {
+  outline: none;
+}
+
+
+
+
+/* FORMULARIO REMITO */
+.formularioRemito {
+  font-size: 20px;
+  background-color: #333;
+
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #f2f2f2;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  height: 500px;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 20px;
+  clear: both;
+  /* Añade esta propiedad para asegurarte de que el formulario Remito aparezca debajo del formulario AltaPaquete */
+}
+
+.formularioRemito input[type="text"],
+[type="email"],
+select[name="cargo"],
+[name="categoria_libreta"] {
+  text-align: left;
+  background-color: #f2f2f2;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+.formularioRemito input[type="submit"],
+[type="button"] {
+  text-align: left;
+  font-size: 20px;
+  background-color: #333;
+  font-weight: bold;
+  color: #F2F2F2;
+
+}
+
+.formularioRemito input:focus {
+  outline: none;
+}
+
+/* FORMULARIO REMITENTE */
+.formularioRemitente {
+
+  border-radius: 5px;
+  width: 280px;
+  float: left;
+  /* Agregado */
+}
+
+
+/* FORMULARIO ALTA PAQUETE */
+.formularioAltaPaquete {
+  font-size: 20px;
+  background-color: #333;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+
+  color: #f2f2f2;
+  text-align: center;
+  margin: 0 auto;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+
+.formularioAltaPaquete input[type="submit"],
+[type="button"] {
+  text-align: left;
+  font-size: 20px;
+  background-color: #333;
+  font-weight: bold;
+  color: #F2F2F2;
+
+}
+
+

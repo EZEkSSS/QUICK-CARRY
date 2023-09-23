@@ -1,0 +1,183 @@
+body {
+    text-align: center;
+    background-color: #F2F2F2;
+    padding-top: 80px;
+    font-family: sans-serif;
+    margin-top: 40px;
+    font-size: 30px;
+    color: #333;
+}
+
+/* Estilos del Header */
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    margin-left: 10px;
+    font-size: 35px;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.botones {
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    display: flex;
+}
+
+.botones form {
+    width: 12em;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.botones input {
+    font-size: 30px;
+    padding: 5px;
+    margin-top: 1em;
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: 500;
+    border: 2px solid #333;
+    border-radius: 10px;
+    transition: 100ms;
+}
+
+.botones input:hover {
+    transition: 100ms;
+    box-shadow: 0 0 5px #333;
+    background-color: #333;
+    color: #f2f2f2;
+}
+
+.volver input {
+    background-color: #333;
+    color: #F2F2F2;
+    padding: 8px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.volver input:hover {
+    background-color: rgb(64, 63, 63);
+}
+
+#verMas{
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+}
+
+#verMas:hover{
+    font-weight: bold;
+    border-bottom: 2px solid;
+}
+
+#entregar{
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#entregar:hover{
+    background-color: gray;
+}
+
+/*Tabla*/
+.tablaDiv {
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    display: flex;
+}
+
+.tablaDiv table {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px;
+}
+
+th {
+    background-color: #333;
+    color: #F2F2F2;
+}
+
+tr:nth-child(odd) {
+    background-color: #F2F2F2;
+}
+
+tr:nth-child(even) {
+    background-color: #bababa;
+}
+
+tbody input,
+select[name="cargo"],
+[name="categoria_libreta"],
+[name="capacidad_carga"],
+[name="estado"] {
+    width: 130px;
+    text-align: left;
+    background-color: #f2f2f2;
+    border: none;
+    border-bottom: 2px solid #333;
+}
+
+tbody button[name='modificar'] {
+    background-color: #F2EB80;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.1s;
+    font-size: 15px;
+}
+
+tbody button[name='modificar']:hover {
+    background-color: #D9BB29;
+    transition: 0.1s;
+}
+
+tbody button[name='modificar'] {
+    background-color: #F2EB80;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.1s;
+    font-size: 15px;
+}
