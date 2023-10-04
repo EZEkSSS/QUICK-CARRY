@@ -1,4 +1,4 @@
-
+#!/bin/bash/
 menu(){
 	echo "1. Gestion de Usuarios"
 	echo "2. Gestion de grupos"
@@ -92,7 +92,7 @@ do
 			;;
 		2)
 			while [ $opcion -ne 4 ]
-			do#!/bin/bash/
+			do
 
 				menuGrupos
 				read -p "Seleccione una opcion: " opcion
