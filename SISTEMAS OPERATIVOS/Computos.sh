@@ -4,7 +4,8 @@ menu(){
 	echo "2. Gestion de grupos"
 	echo "3. Crear respaldo"
 	echo "4. Reiniciar servidor"
-	echo "5. Salir"
+ 	echo "5. Logs.sh"
+	echo "6. Salir"
 }
 
 menuUsuarios(){
@@ -71,7 +72,7 @@ modificarGrupo(){
 }
 
 gestion=0
-while [ $gestion -ne 5 ]
+while [ $gestion -ne 6 ]
 do
 	opcion=0
 	menu
@@ -106,5 +107,6 @@ do
 		3)sh respaldo.sh;;
 		4)reboot;;
 		5)echo "Adios!";;
+  		6)sh logs.sh
 	esac
 done
