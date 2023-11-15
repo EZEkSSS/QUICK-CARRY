@@ -7,7 +7,7 @@ echo "Estas son sus opciones"
 echo "1.Ver Logins"
 echo "2.Ver actividades"
 echo "3.Ver logins y actividades de un usuario específico"
-echo "4.salir"
+echo "4.volver"
 read opcion
 if [ "$opcion" -eq 1 ]; then
 clear
@@ -24,6 +24,9 @@ echo "Información sobre el usuario $user"
 w what "$user"
 else
   echo "El usuario $user no existe"
+elif [ "$opcion" -eq 4 ]: then
+sh Computos.sh
+ 
 fi
 fi
 done
