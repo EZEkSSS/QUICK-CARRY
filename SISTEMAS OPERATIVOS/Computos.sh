@@ -106,7 +106,7 @@ do
 			;;
 		3)sh respaldo.sh;;
 		4)reboot;;
-		5)echo "Adios!";;
-  		6)sh logs.sh
+		5)sh logs.sh;;
+  		6)echo "Adios!";;
 	esac
 done
