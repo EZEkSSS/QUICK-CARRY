@@ -1,1 +1,367 @@
+CREATE DATABASE ezmatech;
+
+USE ezmatech;
+
+CREATE TABLE usuario(
+ci VARCHAR(20) PRIMARY KEY,
+contrasenia VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE persona(
+ci VARCHAR(20) PRIMARY KEY, 
+nombre VARCHAR(25),
+apellido VARCHAR(25),
+email VARCHAR(50) UNIQUE,
+cargo VARCHAR(30),
+estado VARCHAR(20)
+);
+
+CREATE TABLE almacen(
+id_almacen INT AUTO_INCREMENT PRIMARY KEY,
+departamento VARCHAR(25),
+ciudad VARCHAR(40),
+direccion VARCHAR(100),
+coordenadas VARCHAR(50),
+capacidad INT,
+tiempo_a_central TIME,
+estado VARCHAR(20)
+);
+
+CREATE TABLE paquete(
+id_paquete INT AUTO_INCREMENT PRIMARY KEY, 
+peso VARCHAR(10), 
+tamaño VARCHAR(20), 
+tipo_entrega VARCHAR(20), 
+fecha_ingreso DATE, 
+hora_ingreso TIME, 
+departamento_destinatario VARCHAR(25),
+ciudad_destinatario VARCHAR(40),
+direccion_destinatario VARCHAR(100),
+nombre_destinatario VARCHAR(25),
+email_destinatario VARCHAR(50),
+telefono_destinatario VARCHAR(20),
+estado VARCHAR(20)
+);
+
+CREATE TABLE lote(
+id_lote INT AUTO_INCREMENT PRIMARY KEY,
+departamento_destino VARCHAR(25),
+estado VARCHAR(20)
+);
+CREATE TABLE recorrido(
+id_recorrido INT AUTO_INCREMENT PRIMARY KEY
+);
+
+CREATE TABLE funcionario_almacen(
+ci VARCHAR(20) PRIMARY KEY,
+id_almacen INT,
+FOREIGN KEY (ci) REFERENCES persona(ci),
+FOREIGN KEY (id_almacen) REFERENCES almacen(id_almacen)
+);
+
+CREATE TABLE camionero(
+ci VARCHAR(20) PRIMARY KEY,
+libreta VARCHAR(10),
+FOREIGN KEY (ci) REFERENCES persona(ci)
+);
+
+CREATE TABLE vehiculo(
+matricula VARCHAR(10) PRIMARY KEY,
+marca VARCHAR(25),
+modelo VARCHAR(25),
+tipo VARCHAR(20),
+capacidad_carga INT,
+carga_actual INT,
+estado VARCHAR(20)
+);
+
+CREATE TABLE camioneta(
+matricula VARCHAR(10) PRIMARY KEY,
+id_almacen INT,
+FOREIGN KEY (matricula) REFERENCES vehiculo(matricula),
+FOREIGN KEY (id_almacen) REFERENCES almacen(id_almacen)
+);
+
+CREATE TABLE camion(
+matricula VARCHAR(10) PRIMARY KEY,
+FOREIGN KEY (matricula) REFERENCES vehiculo(matricula)
+);
+CREATE TABLE conduce(
+ci_camionero VARCHAR(20),
+matricula VARCHAR(10),
+fecha_inicio DATE,
+fecha_fin DATE,
+FOREIGN KEY (ci_camionero) REFERENCES camionero(ci),
+FOREIGN KEY (matricula) REFERENCES vehiculo(matricula)
+);
+
+CREATE TABLE pasa_por(
+id_recorrido INT,
+id_almacen INT,
+id_lote INT,
+FOREIGN KEY (id_recorrido) REFERENCES recorrido(id_recorrido),
+FOREIGN KEY (id_almacen) REFERENCES almacen(id_almacen),
+FOREIGN KEY (id_lote) REFERENCES lote(id_lote)
+);
+
+CREATE TABLE conforma(
+	id_paquete INT,
+id_lote INT,
+FOREIGN KEY (id_paquete) REFERENCES paquete(id_paquete),
+FOREIGN KEY (id_lote) REFERENCES lote(id_lote)
+);
+
+CREATE TABLE entrega(
+	id_paquete INT,
+matricula VARCHAR(10),
+hora_salida TIME,
+fecha_salida DATE,
+hora_llegada TIME,
+fecha_llegada DATE,
+FOREIGN KEY (id_paquete) REFERENCES paquete(id_paquete),
+FOREIGN KEY (matricula) REFERENCES camioneta(matricula)
+);
+
+CREATE TABLE recorre(
+matricula VARCHAR(10),
+id_recorrido INT,
+id_almacen INT,
+id_lote INT,
+hora_salida TIME,
+fecha_salida DATE,
+hora_llegada TIME,
+fecha_llegada DATE,
+FOREIGN KEY (matricula) REFERENCES camion(matricula),
+FOREIGN KEY (id_recorrido) REFERENCES recorrido(id_recorrido),
+FOREIGN KEY (id_almacen) REFERENCES almacen(id_almacen),
+FOREIGN KEY (id_lote) REFERENCES lote(id_lote)
+);
+
+CREATE TABLE incluye(
+	id_recorrido INT,
+id_almacen INT,
+FOREIGN KEY (id_recorrido) REFERENCES recorrido(id_recorrido),
+FOREIGN KEY (id_almacen) REFERENCES almacen(id_almacen)
+);
+
+-- TRIGGERS
+
+DELIMITER //
+CREATE TRIGGER valida_fecha_recorre
+BEFORE INSERT ON recorre
+FOR EACH ROW
+BEGIN
+    IF NEW.fecha_salida > NEW.fecha_llegada THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'La fecha de salida no puede ser mayor que la fecha de llegada en la tabla RECORRE';
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER valida_fecha_entrega
+BEFORE INSERT ON entrega
+FOR EACH ROW
+BEGIN
+    IF NEW.fecha_salida > NEW.fecha_llegada THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'La fecha de salida no puede ser mayor que la fecha de llegada en la tabla ENTREGA';
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER valida_capacidad_actual
+BEFORE UPDATE ON vehiculo
+FOR EACH ROW
+BEGIN
+    IF NEW.carga_actual > NEW.capacidad_carga THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'La capacidad actual no puede ser mayor que la capacidad de carga en la tabla VEHICULO';
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER valida_estado_vehiculo
+BEFORE INSERT ON vehiculo
+FOR EACH ROW
+BEGIN
+    IF NEW.estado NOT IN ('Fuera de servicio', 'Disponible', 'No disponible') THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El estado del vehículo debe ser "Fuera de servicio", "Disponible" o "No disponible"';
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER valida_tipo_vehiculo
+BEFORE INSERT ON vehiculo
+FOR EACH ROW
+BEGIN
+    IF NEW.tipo NOT IN ('Camion', 'Camioneta') THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El tipo de vehículo debe ser "Camion" o "Camioneta"';
+    END IF;
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER valida_cargo_persona
+BEFORE INSERT ON persona
+FOR EACH ROW
+BEGIN
+    IF NEW.cargo NOT IN ('Funcionario Almacen', 'Camionero', 'Admin') THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El valor de la columna cargo en la tabla PERSONA debe ser "Funcionario Almacen", "Camionero" o "Admin"';
+    END IF;
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER valida_estado_persona
+BEFORE INSERT ON persona
+FOR EACH ROW
+BEGIN
+    IF NEW.estado NOT IN ('Activo', 'Inactivo') THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El estado de la persona debe ser "Activo" o "Inactivo"';
+    END IF;
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER valida_estado_paquete
+BEFORE INSERT ON paquete
+FOR EACH ROW
+BEGIN
+    IF NEW.estado NOT IN ('Ingresado en central', 'Entregado en almacen', 'En reparto', 'Entregado') THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El estado del paquete debe ser "Ingresado en central", "Entregado en almacen", "En reparto" o "Entregado"';
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER valida_estado_lote
+BEFORE INSERT ON lote
+FOR EACH ROW
+BEGIN
+    IF NEW.estado NOT IN ('Abierto', 'Cerrado', 'Por salir', 'En transito', 'Entregado') THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El estado del lote debe ser "Abierto", "Cerrado", "Por salir", "En transito" o "Entregado"';
+    END IF;
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER valida_tamaño_paquete
+BEFORE INSERT ON paquete
+FOR EACH ROW
+BEGIN
+    IF NEW.tamaño NOT IN ('Chico', 'Mediano', 'Grande') THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El tamaño del paquete debe ser "Chico", "Mediano" o "Grande"';
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER valida_tipo_entrega_paquete
+BEFORE INSERT ON paquete
+FOR EACH ROW
+BEGIN
+    IF NEW.tipo_entrega NOT IN ('Final', 'Almacen') THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El tipo de entrega del paquete debe ser "Final" o "Almacen"';
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER valida_peso_paquete
+BEFORE INSERT ON paquete
+FOR EACH ROW
+BEGIN
+    IF NEW.peso <= 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El peso del paquete debe ser un valor positivo';
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER valida_estado_almacen
+BEFORE INSERT ON almacen
+FOR EACH ROW
+BEGIN
+    IF NEW.estado NOT IN ('Activo', 'Inactivo') THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El estado del almacén debe ser "Activo" o "Inactivo"';
+    END IF;
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER valida_capacidad_almacen
+BEFORE INSERT ON almacen
+FOR EACH ROW
+BEGIN
+    IF NEW.capacidad <= 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'La capacidad del almacén debe ser mayor que 0';
+    END IF;
+END;
+//
+DELIMITER ;
+
+
+
+
+
+
+
+
+-- VIEWS
+
+CREATE VIEW vista_funcionarios_almacen_info AS
+SELECT p.ci, p.nombre, p.apellido, p.email, f.id_almacen, a.departamento, a.ciudad, a.direccion
+FROM persona p
+JOIN funcionario_almacen f ON p.ci = f.ci
+JOIN almacen a ON f.id_almacen = a.id_almacen;
+
+CREATE VIEW vista_camionetas_almacen AS
+SELECT v.matricula, v.marca, v.modelo, v.tipo, v.capacidad_carga, v.carga_actual, v.estado,
+       c.id_almacen, a.departamento, a.ciudad, a.direccion
+FROM vehiculo v
+JOIN camioneta c ON v.matricula = c.matricula
+JOIN almacen a ON c.id_almacen = a.id_almacen;
+
+CREATE VIEW vista_paquetes_lote AS
+SELECT p.id_paquete, p.peso, p.tamaño, p.tipo_entrega, p.fecha_ingreso, p.hora_ingreso,
+       c.id_lote
+FROM paquete p
+JOIN conforma c ON p.id_paquete = c.id_paquete;
+
+CREATE VIEW vista_incluye_almacenes AS
+SELECT i.id_recorrido, i.id_almacen, a.departamento, a.ciudad, a.direccion, a.coordenadas, a.capacidad, a.tiempo_a_central, a.estado
+FROM incluye i
+JOIN almacen a ON i.id_almacen = a.id_almacen;
 
