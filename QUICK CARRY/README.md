@@ -1,2 +1,0 @@
-﻿# QUICK-CARRY
-# Descargar codigo desde la entrega de crea.
